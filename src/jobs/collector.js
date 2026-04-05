@@ -42,9 +42,48 @@ async function ensureRoute(origin, destination) {
 }
 async function runCollector() {
   const routes = [
-    ["Sector 17, Chandigarh", "Sector 43, Chandigarh"],
-    ["ISBT Chandigarh", "Elante Mall Chandigarh"]
-  ];
+  // Commercial & Shopping (6)
+  ["Sector 17, Chandigarh", "Elante Mall, Chandigarh"],
+  ["Sector 22, Chandigarh", "Elante Mall, Chandigarh"],
+  ["Sector 35, Chandigarh", "Elante Mall, Chandigarh"],
+  ["ISBT Chandigarh", "Elante Mall, Chandigarh"],
+  ["Sector 43, Chandigarh", "Sector 17, Chandigarh"],
+  ["Sector 17, Chandigarh", "Sector 22, Chandigarh"],
+  
+  // Educational Institutions (5)
+  ["PGI Chandigarh", "Sector 12, Chandigarh"],
+  ["PGIMER Chandigarh", "Sector 17, Chandigarh"],
+  ["Chandigarh University, Gharuan", "Sector 43, Chandigarh"],
+  ["Punjab University, Sector 14", "Sector 17, Chandigarh"],
+  ["DCET, Chandigarh", "Sector 22, Chandigarh"],
+  
+  // Transport Hubs (4)
+  ["Chandigarh Railway Station", "Sector 17, Chandigarh"],
+  ["ISBT Chandigarh", "Sector 43, Chandigarh"],
+  ["Chandigarh Airport", "Sector 17, Chandigarh"],
+  ["Chandigarh Airport", "Elante Mall, Chandigarh"],
+  
+  // Tourist & Recreation (5)
+  ["Rock Garden, Chandigarh", "Sukhna Lake, Chandigarh"],
+  ["Sukhna Lake, Chandigarh", "Sector 17, Chandigarh"],
+  ["Capitol Complex, Chandigarh", "Sector 17, Chandigarh"],
+  ["Zoo, Chandigarh", "Sector 1, Chandigarh"],
+  ["Rose Garden, Sector 16", "Sector 17, Chandigarh"],
+  
+  // Major Commuter Routes (5)
+  ["Sector 56, Chandigarh", "Sector 17, Chandigarh"],
+  ["Housing Board, Chandigarh", "IT Park, Chandigarh"],
+  ["Manimajra, Chandigarh", "Sector 17, Chandigarh"],
+  ["Dhanas, Chandigarh", "Sector 22, Chandigarh"],
+  ["Maloya, Chandigarh", "Sector 17, Chandigarh"],
+  
+  // Kharar Routes (5)
+  ["Kharar, Punjab", "Chandigarh Sector 17"],
+  ["Kharar, Punjab", "Elante Mall, Chandigarh"],
+  ["Kharar, Punjab", "IT Park, Chandigarh"],
+  ["Chandigarh Sector 43", "Kharar, Punjab"],
+  ["Kharar, Punjab", "PGI Chandigarh"]
+];
   console.log("here");
   
   for (const [origin, destination] of routes) {
