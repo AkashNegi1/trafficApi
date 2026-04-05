@@ -14,7 +14,8 @@ export async function getTrafficData(origin,destination,apikey){
             destination,
             durationNormal: leg.duration?.value || null,
             durationInTraffic: leg.duration_in_traffic?.value || null,
-            distance: leg.distance?.value || null
+            distance: leg.distance?.value || null,
+            polyline: data.routes[0].overview_polyline.points || null
         }
     }
 

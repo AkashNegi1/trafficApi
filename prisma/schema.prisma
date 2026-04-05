@@ -31,6 +31,6 @@ model Route {
   origin      String
   destination String
   trafficData TrafficData[]
-
+  polyline    String? 
   @@unique([origin, destination])
 }

@@ -34,7 +34,11 @@ async function ensureRoute(origin, destination) {
   // If not found, create it
   if (!route) {
     route = await prisma.route.create({
-      data: { origin, destination },
+      data: { 
+        origin, 
+        destination,
+        polyline:enriched.polyline
+     },
     });
   }
 
