@@ -32,6 +32,7 @@ async function ensureRoute(origin, destination,polyline) {
   //if polyline is null, update it
   if(route && !route.polyline){
    await prisma.route.update({
+    where: { id: route.id },
     data : { polyline: polyline },});
    }
   // If not found, create it
