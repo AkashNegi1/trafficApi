@@ -3,8 +3,7 @@ import dotenv from "dotenv";
 import { getTrafficData } from "../services/directions.js";
 
 dotenv.config();
-console.log("GOOGLE_API_KEY:", process.env.GOOGLE_API_KEY);
-   console.log("DB_URL:", process.env.DB_URL);
+
 function enrichRecords(record){
     const ts = new Date(record.timeStamp);
     const weekday = ts.getDay(); 
@@ -30,14 +29,18 @@ async function ensureRoute(origin, destination) {
   let route = await prisma.route.findUnique({
     where: { origin_destination: { origin, destination } },
   });
-
+  //if polyline is null, update it
+  if(route && !route.polyline){
+   await prisma.route.update({
+    data : { polyline: enriched.polyline },});
+   }
   // If not found, create it
   if (!route) {
     route = await prisma.route.create({
       data: { 
         origin, 
         destination,
-        polyline:enriched.polyline
+        polyline: enriched.polyline
      },
     });
   }
@@ -88,7 +91,6 @@ async function runCollector() {
   ["Chandigarh Sector 43", "Kharar, Punjab"],
   ["Kharar, Punjab", "PGI Chandigarh"]
 ];
-  console.log("here");
   
   for (const [origin, destination] of routes) {
     const record = await getTrafficData(origin, destination, process.env.GOOGLE_API_KEY);
