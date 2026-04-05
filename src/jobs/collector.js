@@ -24,7 +24,7 @@ function enrichRecords(record){
     }    
 }
 
-async function ensureRoute(origin, destination) {
+async function ensureRoute(origin, destination,polyline) {
   // Try to find existing route
   let route = await prisma.route.findUnique({
     where: { origin_destination: { origin, destination } },
@@ -32,7 +32,7 @@ async function ensureRoute(origin, destination) {
   //if polyline is null, update it
   if(route && !route.polyline){
    await prisma.route.update({
-    data : { polyline: enriched.polyline },});
+    data : { polyline: polyline },});
    }
   // If not found, create it
   if (!route) {
@@ -40,7 +40,7 @@ async function ensureRoute(origin, destination) {
       data: { 
         origin, 
         destination,
-        polyline: enriched.polyline
+        polyline: polyline
      },
     });
   }
@@ -100,7 +100,7 @@ async function runCollector() {
         console.log(record);
         
         const enriched = enrichRecords(record);
-        const routeId = await ensureRoute(origin, destination);
+        const routeId = await ensureRoute(origin, destination,record.polyline);
       await prisma.trafficData.create(
         { data: {...enriched, routeId} }
     );
