@@ -8,7 +8,7 @@ console.log("GOOGLE_API_KEY:", process.env.GOOGLE_API_KEY);
 function enrichRecords(record){
     const ts = new Date(record.timeStamp);
     const weekday = ts.getDay(); 
-    const hour = ts.getHours();
+    const hour = (ts.getHours()+5.5)%24;
     const distancekm = record.distance ? record.distance / 1000 : null;
     const congestionRatio = record.durationNormal && record.durationInTraffic 
                             ? record.durationInTraffic / record.durationNormal : null;
