@@ -10,7 +10,7 @@ function enrichRecords(record){
     const hour = (ts.getHours()+5.5)%24;
     const distancekm = record.distance ? record.distance / 1000 : null;
     const congestionRatio = record.durationNormal && record.durationInTraffic 
-                            ? record.durationInTraffic / record.durationNormal : null;
+                             ? record.durationInTraffic / record.durationNormal : null;
     return {
         timestamp: record.timeStamp,
         origin: record.origin,
@@ -20,7 +20,8 @@ function enrichRecords(record){
         distanceKm: distancekm,
         durationNormal: record.durationNormal,
         durationInTraffic: record.durationInTraffic,
-        congestionRatio
+        congestionRatio,
+        polyline: record.polyline
     }    
 }
 

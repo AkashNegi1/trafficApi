@@ -24,6 +24,7 @@ model TrafficData {
   durationNormal     Int?
   durationInTraffic  Int?
   congestionRatio   Float?
+  polyline          String?
 }
 
 model Route {
